@@ -468,7 +468,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-slate-900 font-['Montserrat'] antialiased">
+<body class="bg-slate-900 font-['Montserrat'] antialiased scroll-behavior: smooth;">
     @include('Navigasi')
 
     <section class="relative w-full h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
@@ -493,38 +493,42 @@
     </section>
 
     <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="about-text-box">
-                <h2 class="about-title">
-                    Jelajahi pilihan akomodasi hotel terbaik kami yang dikurasi secara cermat, dirancang khusus untuk
-                    <em>relaksasi</em> dan <em>pemulihan Anda.</em>
-                </h2>
+    <div class="about-container">
+        <!-- Bagian Text di Kiri (Tetap Sesuai Asal) -->
+        <div class="about-text-box">
+            <h2 class="about-title">
+                Jelajahi pilihan akomodasi hotel terbaik kami yang dikurasi secara cermat, dirancang khusus untuk
+                <em>relaksasi</em> dan <em>pemulihan Anda.</em>
+            </h2>
 
-                <div class="about-desc">
-                    <p>
-                        Kemewahan Sejati, bagi kami, melampaui sekadar kemegahan ini adalah tentang pelukan yang
-                        tenang, kedamaian, dan kesejahteraan yang menyertainya. Dari kamar eksklusif hingga layanan yang
-                        tak tertandingi, Soleia Hotel mengkhususkan diri dalam merancang pengalaman menginap yang
-                        otentik bagi para tamu kami.
-                    </p>
-                    </p>
-                    <p>
-                        Untuk informasi, reservasi, dan kunjungan, Anda dapat mendatangi langsung hotel kami di
-                        <strong>Jl. Raya Nusa Dua Selatan No. 88, Kuta Selatan, Badung, Bali 80363, Indonesia</strong>.
-                        Anda juga bisa menghubungi layanan pelanggan kami melalui WhatsApp di <strong>+62
-                            812-3456-7890</strong> atau melalui website resmi kami di
-                        <strong>www.soleiahotel.com</strong>. Pelarian Luar Biasa Anda Dimulai Di Sini...
-                    </p>
-                </div>
-            </div>
-
-            <div class="about-image-box">
-                <div class="about-image-wrapper">
-                    <img src="{{ asset('image/reservasi.jpeg') }}" alt="Pengalaman Soleia Resort">
-                </div>
+            <div class="about-desc">
+                <p>
+                    Kemewahan Sejati, bagi kami, melampaui sekadar kemegahan ini adalah tentang pelukan yang
+                    tenang, kedamaian, dan kesejahteraan yang menyertainya. Dari kamar eksklusif hingga layanan yang
+                    tak tertandingi, Soleia Hotel mengkhususkan diri dalam merancang pengalaman menginap yang
+                    otentik bagi para tamu kami.
+                </p>
+                <p>
+                    Untuk informasi, reservasi, dan kunjungan, Anda dapat mendatangi langsung hotel kami di
+                    <strong>Jl. Raya Nusa Dua Selatan No. 88, Kuta Selatan, Badung, Bali 80363, Indonesia</strong>.
+                    Anda juga bisa menghubungi layanan pelanggan kami melalui WhatsApp di <strong>+62
+                    812-3456-7890</strong> atau melalui website resmi kami di
+                    <strong>www.soleiahotel.com</strong>. Pelarian Luar Biasa Anda Dimulai Di Sini...
+                </p>
             </div>
         </div>
-    </section>
+
+        <!-- Bagian Video di Kanan (Format Potret Tunggal yang Rapi) -->
+        <div class="about-image-box">
+            <div class="about-image-wrapper" style="width: 100%; max-width: 280px; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); margin: 0 auto;">
+                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="{{ asset('image/video2_hasil_edit.mp4') }}" type="video/mp4">
+                    Browser Anda tidak mendukung pemutaran video.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section class="gallery-section">
         <div class="gallery-wrapper">
@@ -550,7 +554,7 @@
         </div>
     </section>
 
-    <section class="rooms-section">
+    <section id="rooms" class="rooms-section">
         <div class="rooms-title-wrapper">
             <h2 class="rooms-section-title">Kamar & Suite</h2>
             <p class="rooms-section-subtitle">Pilih tempat peristirahatan sempurna yang disesuaikan untuk kenyamanan

@@ -134,11 +134,11 @@
                 </div>
             @empty
                 <!-- Tampilan Jika Belum Ada Data Pemesanan -->
-                <div
-                    class="bg-white rounded-3xl shadow-lg p-12 text-center flex flex-col items-center justify-center gap-4">
-                    <p class="text-stone-500 text-xs">Belum ada data pemesanan kamar yang tersimpan.</p>
-                    <a href="{{ route('beranda') }}"
-                        class="px-6 py-3 bg-[#1b3022] text-white rounded-xl text-xs font-semibold hover:bg-[#122017] transition">
+                <div class="py-16 text-center flex flex-col items-center justify-center gap-4">
+                    <p class="text-stone-500 text-xs font-medium">Belum ada data pemesanan kamar yang tersimpan.</p>
+                    <a href="{{ route('home') }}"
+                        style="background-color: #16291c; color: white;" 
+                        class="px-7 py-3 rounded-full text-xs font-medium shadow-md hover:bg-[#203927] transition">
                         Pesan Kamar Sekarang
                     </a>
                 </div>
