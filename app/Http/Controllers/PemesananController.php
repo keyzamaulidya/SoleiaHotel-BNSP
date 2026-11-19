@@ -65,12 +65,24 @@ class PemesananController extends Controller
         return view('FormulirPemesanan', compact('tipeKamar', 'harga', 'currentRoom'));
     }
 
+    public function cetak($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+        return view('pemesanan.cetak', compact('pemesanan'));
+    }
+
+    public function detail($id)
+{
+    $pemesanan = Pemesanan::findOrFail($id);
+    return view('pemesanan.detail', compact('pemesanan'));
+}
+
     // Memproses penyimpanan dan perhitungan total bayar di backend
     public function store(Request $request)
     {
         // Validasi input sesuai ketentuan LKPD (Nomor Identitas 16 Digit)
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255, regex:/^[a-zA-Z\s]+$/',
             'email' => 'required|email|max:255',
             'jenis_kelamin' => 'required|string',
             'no_identitas' => 'required|digits:16',
@@ -78,6 +90,7 @@ class PemesananController extends Controller
             'tanggal' => 'required|date',
             'durasi' => 'required|integer|min:1',
         ], [
+            'nama.regex' => 'Nama pengguna hanya boleh berisi huruf dan spasi (tidak boleh ada angka atau simbol).',
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid (contoh: nama@domain.com).',
             'no_identitas.required' => 'Nomor identitas wajib diisi.',

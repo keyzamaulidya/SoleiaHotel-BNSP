@@ -15,6 +15,8 @@ Route::post('/formulir-pemesanan/store', [PemesananController::class, 'store'])-
 // Halaman Rincian Pemesanan
 Route::get('/rincian-pemesanan', [PemesananController::class, 'index'])->name('pemesanan.index');
 
+Route::get('/pemesanan/{id}/cetak', [PemesananController::class, 'cetak'])->name('pemesanan.cetak');
+Route::get('/pemesanan/{id}/detail', [PemesananController::class, 'detail'])->name('pemesanan.detail');
 // Route tambahan navigasi 
 Route::get('/produk', function () { return view('Home'); })->name('produk');
 Route::get('/harga', function () { return view('Home'); })->name('harga');

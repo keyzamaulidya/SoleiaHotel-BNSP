@@ -128,11 +128,13 @@
 
                     <div class="flex flex-col gap-4">
                         <!-- 1. Nama Pemesan -->
+                        <!-- 1. Nama Pemesan -->
                         <div
                             class="bg-[#f7f6f2] border border-stone-200 rounded-2xl px-5 py-3 flex flex-col justify-center focus-within:border-[#1b3022] focus-within:bg-white focus-within:ring-1 focus-within:ring-[#1b3022] transition">
                             <label class="text-xs text-stone-500 font-medium mb-1" for="nama">Nama Pemesan*</label>
-                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap"
-                                value="{{ old('nama') }}"
+                            <input type="text" name="nama" id="nama" value="{{ old('nama') }}"
+                                onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32"
+                                placeholder="Masukkan nama lengkap"
                                 class="w-full bg-transparent border-none outline-none font-medium text-sm text-[#1a1a1a]"
                                 required>
                         </div>
@@ -174,9 +176,11 @@
 
                             <div
                                 class="bg-[#f7f6f2] border border-stone-200 rounded-2xl px-5 py-3 flex flex-col justify-center focus-within:border-[#1b3022] focus-within:bg-white focus-within:ring-1 focus-within:ring-[#1b3022] transition">
-                                <label class="text-xs text-stone-500 font-medium mb-1" for="tanggal">Tanggal
-                                    Pesan*</label>
-                                <input type="date" id="tanggal" name="tanggal" value="{{ old('tanggal') }}"
+                                <label class="text-xs text-stone-500 font-medium mb-1" for="tanggal_checkin">Tanggal
+                                    Check-In*</label>
+
+                                <input type="date" name="tanggal" id="tanggal_checkin" min="{{ date('Y-m-d') }}"
+                                    value="{{ old('tanggal', date('Y-m-d')) }}"
                                     class="w-full bg-transparent border-none outline-none font-medium text-sm text-[#1a1a1a]"
                                     required>
                             </div>

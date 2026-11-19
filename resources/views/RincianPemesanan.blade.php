@@ -15,6 +15,30 @@
         body {
             font-family: 'Montserrat', sans-serif;
         }
+
+        /* Styling khusus saat mode print/PDF */
+    @media print {
+        /* Sembunyikan navbar, tombol, dan background luar */
+        nav, .no-print, header, footer, button, a {
+            display: none !important;
+        }
+        body {
+            background-color: #ffffff !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        /* Ubah card rincian jadi bentuk struk nota vertikal */
+        .bg-white {
+            box-shadow: none !important;
+            border: none !important;
+            max-width: 100% !important;
+            padding: 10px !important;
+        }
+        /* Sembunyikan foto kamar saat diprint sesuai permintaan */
+        .w-full.md\:w-\[320px\] {
+            display: none !important;
+        }
+    }
     </style>
 </head>
 
@@ -117,16 +141,26 @@
                             </div>
                         </div>
 
-                        <!-- Bagian Bawah: Total Pembayaran -->
+                        <!-- Bagian Bawah: Total Pembayaran & Tombol Cetak PDF -->
                         <div
-                            class="bg-[#faf9f5] border border-stone-200/60 rounded-2xl p-4 sm:p-5 flex justify-between items-center mt-2">
+                            class="bg-[#faf9f5] border border-stone-200/60 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between items-center gap-4 mt-2">
                             <div>
                                 <span class="text-[10px] uppercase tracking-wider text-stone-400 block font-semibold">Total
                                     Pembayaran</span>
                                 <span class="text-xs text-[#1b3022] font-semibold">Status: Berhasil Dipesan</span>
                             </div>
-                            <span class="text-xl sm:text-2xl font-bold text-[#1b3022]">Rp
-                                {{ number_format($pesanan->total_bayar, 0, ',', '.') }}</span>
+
+                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                                <span class="text-xl sm:text-2xl font-bold text-[#1b3022]">Rp
+                                    {{ number_format($pesanan->total_bayar, 0, ',', '.') }}</span>
+
+                                <!-- Tombol Cetak / PDF langsung di tab yang sama -->
+<!-- Tombol menuju Halaman Detail Nota -->
+<a href="{{ route('pemesanan.detail', $pesanan->id) }}"
+   class="px-4 py-2 bg-[#1b3022] hover:bg-[#284632] text-white text-xs font-semibold rounded-xl shadow-sm transition flex items-center gap-1.5 shrink-0">
+    📄 Halaman Detail
+</a>
+                            </div>
                         </div>
 
                     </div>
@@ -136,8 +170,7 @@
                 <!-- Tampilan Jika Belum Ada Data Pemesanan -->
                 <div class="py-16 text-center flex flex-col items-center justify-center gap-4">
                     <p class="text-stone-500 text-xs font-medium">Belum ada data pemesanan kamar yang tersimpan.</p>
-                    <a href="{{ route('home') }}"
-                        style="background-color: #16291c; color: white;" 
+                    <a href="{{ route('home') }}" style="background-color: #16291c; color: white;"
                         class="px-7 py-3 rounded-full text-xs font-medium shadow-md hover:bg-[#203927] transition">
                         Pesan Kamar Sekarang
                     </a>
